@@ -1,0 +1,90 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+ .head1{
+    @apply text-3xl font-extrabold text-gray-800 my-4 text-center;
+ }
+
+ .fade-in {
+	opacity: 1;
+	animation-name: fadeInOpacity;
+	animation-iteration-count: 1;
+	animation-timing-function: ease-in-out;
+	animation-duration: 0.6s;
+}
+
+.faders {
+	opacity: 0;
+	transition: opacity 1.5s ease-out;
+  }
+
+@keyframes fadeInOpacity {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+
+.slide {
+	position: relative;
+	left: 0vw;
+	animation-name: slide-in;
+	animation-iteration-count: 1;
+	animation-timing-function: ease-in-out;
+	animation-duration: 0.4s;
+ 
+}
+
+.slide-in-from-right {
+	position: relative;
+	left: 0vw;
+	animation-name: slide-in-from-right;
+	animation-iteration-count: 1;
+	animation-timing-function: ease-in-out;
+	animation-duration: 0.4s;
+ 
+}
+
+.slide2 {
+	position: relative;
+	left: 0vw;
+	animation-name: slide-out;
+	animation-iteration-count: 1;
+	animation-timing-function: ease-in-out;
+	animation-duration: 0.4s;
+ 
+}
+
+
+@keyframes slide-in {
+    0% { 
+		transform: translate(-1000px, 0px);
+	}
+	100% { 
+		transform: translate(0px, 0px);
+	 }
+}
+
+@keyframes slide-in-from-right {
+    0% { 
+		transform: translate(1000px, 0px);
+	}
+	100% { 
+		transform: translate(0px, 0px);
+	 }
+}
+
+@keyframes slide-out {
+    0% { 
+		transform: translate(0px, 0px);
+	}
+	100% { 
+		transform: translate(1000px, 0px);
+
+	 }
+}
+
+
