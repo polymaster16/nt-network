@@ -11,6 +11,7 @@ export const useUserStore = defineStore({
         password : 'user.password',
         city : 'user.city',
         country : 'user.country',
+        balance: 'user.balance'
     }),
     actions: {
         print() {

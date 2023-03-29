@@ -5,7 +5,7 @@ const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
-      path: '/home',
+      path: '/',
       name: 'home',
       transition: 'fade',
       component: HomeView
@@ -68,7 +68,7 @@ const router = createRouter({
       component: () => import('../views/MyRobot.vue')
     } ,
     {
-      path: '/',
+      path: '/login',
       name: 'login',
       transition: 'fade',
       // route level code-splitting
@@ -86,7 +86,7 @@ const router = createRouter({
       component: () => import('../views/SignUp.vue')
     },
     {
-      path: '/trading',
+      path: '/trading/:id',
       name: 'trading',
       transition: 'fade',
       // route level code-splitting
@@ -95,7 +95,7 @@ const router = createRouter({
       component: () => import('../views/Trading.vue')
     }     ,
     {
-      path: '/mining',
+      path: '/mining/:id',
       name: 'mining',
       transition: 'fade',
       // route level code-splitting

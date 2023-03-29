@@ -87,4 +87,30 @@
 	 }
 }
 
+.titre{
+	@apply  
+	font-bold text-2xl text-center mt-8;
+	
+	}
+	.t2{
+	@apply  
+	font-bold text-lg text-left ml-4
+	}
 
+	@keyframes scara{
+		from{
+		  transform: scale(01);
+		}
+		50%{
+		  transform: scale(1.1);
+		}
+		to{
+		  transform: scale(01);
+		}
+		
+		}
+
+		.scara{
+			animation: scara 2s linear infinite;
+		  
+		  }

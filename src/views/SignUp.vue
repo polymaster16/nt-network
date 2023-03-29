@@ -57,20 +57,38 @@ const orangeSelected= ref(false)
 const mtnSelected= ref(false)
 
 const maleProfiles = [
-  'https://cdn.pixabay.com/photo/2016/03/12/23/18/man-1253004_960_720.jpg',
-  'https://cdn.pixabay.com/photo/2019/08/02/00/16/male-northern-cardinal-4378483_960_720.jpg',
-  'https://cdn.pixabay.com/photo/2018/07/31/22/08/lion-3576045_960_720.jpg',
-  'https://cdn.pixabay.com/photo/2016/11/29/10/07/tiger-1868911_960_720.jpg',
-  'https://cdn.pixabay.com/photo/2017/04/23/15/58/street-art-2254146_960_720.jpg',
-  'https://cdn.pixabay.com/photo/2014/04/03/11/57/man-312698_960_720.png',
-  'https://cdn.pixabay.com/photo/2015/01/05/19/21/adler-589599_960_720.jpg',
-  'https://cdn.pixabay.com/photo/2014/11/08/01/20/bald-eagle-521492_960_720.jpg',
-  'https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/Souvenir_silhouette_post_card._Toledo%27s_greatest_store%3B_Tiedtke%27s._The_store_for_all_the_people_-_DPLA_-_f00a78fe61c216236a13cdebf588d3c3_%28page_1%29.jpg/1200px-Souvenir_silhouette_post_card._Toledo%27s_greatest_store%3B_Tiedtke%27s._The_store_for_all_the_people_-_DPLA_-_f00a78fe61c216236a13cdebf588d3c3_%28page_1%29.jpg'
+"https://api.dicebear.com/6.x/avataaars/svg?seed=Garfield&eyebrows=default,defaultNatural,raisedExcited&eyes=closed,default,happy&mouth=default,smile",
+"https://api.dicebear.com/6.x/avataaars/svg?seed=Jasper&eyebrows=default,defaultNatural,raisedExcited&eyes=closed,default,happy&mouth=default,smile",
+"https://api.dicebear.com/6.x/avataaars/svg?seed=johnnnnn&eyebrows=default,defaultNatural,raisedExcited&eyes=closed,default,happy&mouth=default,smile",
+"https://api.dicebear.com/6.x/avataaars/svg?seed=Casper&eyebrows=default,defaultNatural,raisedExcited&eyes=closed,default,happy&mouth=default,smile",
+"https://api.dicebear.com/6.x/avataaars/svg?seed=Boby&eyebrows=default,defaultNatural,raisedExcited&eyes=closed,default,happy&mouth=default,smile",
+"https://api.dicebear.com/6.x/avataaars/svg?seed=Miakkkk&eyebrows=default,defaultNatural,raisedExcited&eyes=closed,default,happy&mouth=default,smile",
+"https://api.dicebear.com/6.x/avataaars/svg?seed=Daisyi&eyebrows=default,defaultNatural,raisedExcited&eyes=closed,default,happy&mouth=default,smile",
+"https://api.dicebear.com/6.x/avataaars/svg?seed=Angeli&eyebrows=default,defaultNatural,raisedExcited&eyes=closed,default,happy&mouth=default,smile",
+"https://api.dicebear.com/6.x/avataaars/svg?seed=Bearoo&eyebrows=default,defaultNatural,raisedExcited&eyes=closed,default,happy&mouth=default,smile",
+"https://api.dicebear.com/6.x/avataaars/svg?seed=Babybo&eyebrows=default,defaultNatural,raisedExcited&eyes=closed,default,happy&mouth=default,smile",
+"https://api.dicebear.com/6.x/avataaars/svg?seed=Garfieldsss&eyebrows=default,defaultNatural,raisedExcited&eyes=closed,default,happy&mouth=default,smile",
+"https://api.dicebear.com/6.x/avataaars/svg?seed=n&eyebrows=default,defaultNatural,raisedExcited&eyes=closed,default,happy&mouth=default,smile",
+"https://api.dicebear.com/6.x/avataaars/svg?seed=Babybovvcxdf&eyebrows=default,defaultNatural,raisedExcited&eyes=closed,default,happy&mouth=default,smile",
+"https://api.dicebear.com/6.x/avataaars/svg?seed=Daisyi&eyebrows=default,defaultNatural,raisedExcited&eyes=closed,default,happy&mouth=default,smile",
+"https://api.dicebear.com/6.x/avataaars/svg?seed=johnnnnn&eyebrows=default,defaultNatural,raisedExcited&eyes=closed,default,happy&mouth=default,smile",
+"https://api.dicebear.com/6.x/avataaars/svg?seed=Bearoo&eyebrows=default,defaultNatural,raisedExcited&eyes=closed,default,happy&mouth=default,smile",
+"https://api.dicebear.com/6.x/avataaars/svg?seed=henryyy&eyebrows=default,defaultNatural,raisedExcited&eyes=closed,default,happy&mouth=default,smile",
+"https://api.dicebear.com/6.x/avataaars/svgseed=Bearoo&eyebrows=default,defaultNatural,raisedExcited&eyes=closed,default,happy&mouth=default,smile&skinColor=ae5d29,d08b5b,edb98a",
+"https://api.dicebear.com/6.x/avataaars/svg?seed=Miakkkk&eyebrows=default,defaultNatural,raisedExcited&eyes=closed,default,happy&mouth=default,smile&skinColor=ae5d29,d08b5b,edb98a",
+"https://api.dicebear.com/6.x/avataaars/svg?seed=Casperooo&eyebrows=default,defaultNatural,raisedExcited&eyes=closed,default,happy&mouth=default,smile&skinColor=ae5d29,d08b5b,edb98a",
+"https://api.dicebear.com/6.x/avataaars/svg?seed=Bella&eyebrows=default,defaultNatural,raisedExcited&eyes=closed,default,happy&mouth=default,smile&skinColor=ae5d29,d08b5b,edb98a",
 ]
 const femaleProfiles = [
-'https://cdn.pixabay.com/photo/2015/03/03/08/55/portrait-657116_960_720.jpg',
-'https://cdn.pixabay.com/photo/2016/02/13/00/23/woman-1197149_960_720.jpg',
-'https://cdn.pixabay.com/photo/2020/06/21/06/00/bohemian-5323332_960_720.png']
+"https://api.dicebear.com/6.x/avataaars/svg?seed=mel&eyebrows=default,defaultNatural,raisedExcited&eyes=closed,default,happy&mouth=default,smile&skinColor=ae5d29,d08b5b,edb98a",
+"https://api.dicebear.com/6.x/avataaars/svg?seed=kevin&eyebrows=default,defaultNatural,raisedExcited&eyes=closed,default,happy&mouth=default,smile&skinColor=ae5d29,d08b5b,edb98a",
+"https://api.dicebear.com/6.x/avataaars/svg?seed=le&eyebrows=default,defaultNatural,raisedExcited&eyes=closed,default,happy&mouth=default,smile&skinColor=ae5d29,d08b5b,edb98a",
+"https://api.dicebear.com/6.x/avataaars/svg?seed=leticii&eyebrows=default,defaultNatural,raisedExcited&eyes=closed,default,happy&mouth=default,smile&skinColor=ae5d29,d08b5b,edb98a",
+"https://api.dicebear.com/6.x/avataaars/svg?seed=leticiaaaa&eyebrows=default,defaultNatural,raisedExcited&eyes=closed,default,happy&mouth=default,smile&skinColor=ae5d29,d08b5b,edb98a",
+"https://api.dicebear.com/6.x/avataaars/svg?seed=rut&eyebrows=default,defaultNatural,raisedExcited&eyes=closed,default,happy&mouth=default,smile&skinColor=ae5d29,d08b5b,edb98a",
+"https://api.dicebear.com/6.x/avataaars/svg?seed=nell&eyebrows=default,defaultNatural,raisedExcited&eyes=closed,default,happy&mouth=default,smile&skinColor=ae5d29,d08b5b,edb98a",
+"https://api.dicebear.com/6.x/avataaars/svg?seed=nellyy&eyebrows=default,defaultNatural,raisedExcited&eyes=closed,default,happy&mouth=default,smile&skinColor=ae5d29,d08b5b,edb98a",
+]
 
 watch(mop, (val)=>{
   console.log(val)
@@ -92,8 +110,8 @@ if(val== "Orange Money"){
 
 watch(sex, (val)=>{
   console.log("gender: ", val)
-  const iMale = Math.floor(Math.random() * (9 - 0 + 1)) + 0;
-  const iFemale = Math.floor(Math.random() * (4 - 0 + 1)) + 0;
+  const iMale = Math.floor(Math.random() * (21 - 0 + 1)) + 0;
+  const iFemale = Math.floor(Math.random() * (8 - 0 + 1)) + 0;
 
   if(val == "Male"){
     user.profileImg = maleProfiles[iMale];
@@ -105,7 +123,7 @@ watch(sex, (val)=>{
 
 });
 
-const createUser=async()=>{
+const createUser= async()=> {
   isCreatingAccount.value = true
  try {
   await database
@@ -118,9 +136,10 @@ const createUser=async()=>{
     email: user.email,
     whatsapp:user.whatsapp,
     password: user.password1,
-    profileIcon: user.profileImg
+    profileIcon: user.profileImg,
+    balance: 10,
     })
-     alert("Accoun created succesfully")
+     alert("Account created succesfully")
     router.push({ path: '/login' })
     .then((r)=>window.location.reload())
     .catch(err => alert("ERROR"))
@@ -232,6 +251,7 @@ else{
 <Preloader :msg="message" :bcolor="loadColor"/>
 </div>
  <div v-else>
+  <div v-motion-fade>
 <v-row class="bg-gradient-to-r from-amber-200 to-emerald-200 ... 
        flex justify-center align-middle py-8" justify="center">
       <v-col
@@ -336,13 +356,14 @@ else{
          
           <div
           class="my-10 text-center ">
-          <router-link to="/" 
+          <router-link to="/login" 
           class="text-lg font-bold text-blue-500
            hover:text-blue-700 focus:text-pink-600 ">Login instead</router-link>
           </div>
         </v-card>
       </v-col>
 </v-row>
+</div>
 </div>
   </template>
 

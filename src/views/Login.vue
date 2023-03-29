@@ -105,7 +105,7 @@ const login = async() => {
     localStorage.setItem('@userKey', password.value)
     loading.value = false
     setUserStore()                                                  
-    router.push('/home')
+    router.push('/')
   } else {
     alert("wrong username or password. Try again please")
     name.value =""

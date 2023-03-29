@@ -78,7 +78,7 @@ onMounted(() => {
    <TopBar/>
 
    <div 
-   class="bg-gradient-to-r from-fuchsia-100 to-blue-100 ... 
+   class="bg-gradient-to-r from-blue-100 to-indigo-100 ... 
        flex flex-col justify-center align-middle ">
 <router-view/>
  </div>

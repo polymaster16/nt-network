@@ -1,6 +1,44 @@
 <script setup>
-import {ref} from 'vue';
-  const tasks = ref([{
+import {ref, onMounted} from 'vue';
+import { useRouter } from 'vue-router';
+import database from '../supabase';
+
+const tasks = ref([])
+const loading = ref(false)
+const router = useRouter()
+async function getTasks(){
+  loading.value = true;
+  try {
+  const { data} = await database
+  .from('tasks')
+  .select('*')
+  tasks.value = data
+  //data.value.target = tasks.value
+  console.log(data)
+  loading.value = false;
+  } catch (error) {
+    console.log(error)
+  }
+
+}
+
+const open =async(task)=>{
+  if (task.type === 'staking'){
+    router.push(`trading/${task.id}`)
+  } else 
+  if (task.type === 'mining'){
+    router.push(`mining/${task.id}`)
+  } else 
+  if (task.type === 'trading'){
+    router.push(`trading/${task.id}`)
+}
+}
+
+onMounted(() => {
+  getTasks()
+})
+
+  const tasks1 = ref([{
     id:"t1",
     name: "Tache1",
     type:"staking",
@@ -56,6 +94,12 @@ import {ref} from 'vue';
         Taches
     </div>
 
+    <v-progress-linear v-if="loading"
+ class="mt-5"
+ height="20"
+      indeterminate
+      color="yellow-darken-2"
+    ></v-progress-linear>
 
     <div v-for="task in tasks" v-bind="id">
  <v-hover 
@@ -67,7 +111,8 @@ import {ref} from 'vue';
  elevation="2"
   :class="isHovering ? ` bg-${task.typeColor}-lighten-5` : ` bg-${task.typeColor}-lighten-5`"
  class="my-7 mx-8 flex flex-row align-middle justify-start p-4
-       rounded-2xl drop-shadow-lg">
+       rounded-2xl drop-shadow-lg"
+       @click = "open(task)">
      <img class="w-12 h-12 rounded-full mr-6"
       :src="task.robotIcon"
        alt="Robot Avatar">

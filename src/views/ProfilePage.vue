@@ -8,7 +8,7 @@ const userStore = useUserStore();
 
 
 <template>
-    <div class="slide-in-from-right">
+    <div class="slide-in-from-right bg-gradient-to-r from-indigo-100 to-fuchsia-100 ... ">
     <div class="head1">
         Mon Profile
     </div>
@@ -26,7 +26,7 @@ const userStore = useUserStore();
      <p class=" font-bold text-md  text-stone-700"
      >
      <font-awesome-icon icon="fa-solid fa-wallet" class="mr-2"/>
-      100{{ userStore.balance }} USDT</p>
+      {{ userStore.balance }} USDT</p>
     </div>
 
     </v-card>
@@ -45,7 +45,7 @@ const userStore = useUserStore();
     <v-card class=" my-7 mx-4 lg:mx-9 p-4 gap-2 rounded-2xl drop-shadow-lg  grid grid-cols-1">
        <p class="text-xl text-center font-bold mb-1"> 
         <font-awesome-icon icon="fa-solid fa-wallet" class="mr-4"/>Wallet</p> 
-       <p class="text-md font-semibold">- Solde: 100 {{ userStore.balance }} USDT</p> 
+       <p class="text-md font-semibold">- Solde:  {{ userStore.balance }} USDT</p> 
        <p class="text-md font-semibold">- IC:  0{{ userStore.ic }} USDT</p> 
        <p class="text-md font-semibold">- BC:  0{{ userStore.bc }} USDT</p> 
        <br>

@@ -5,7 +5,7 @@
         bg-color="black"
       >
         <v-tab class="py-4">
-            <router-link to="/home">
+            <router-link to="/">
          <font-awesome-icon icon="fa-solid fa-house" class=" " />
         </router-link>
         </v-tab>

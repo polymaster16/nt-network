@@ -1,16 +1,109 @@
 <script setup>
 import {ref, onMounted} from 'vue'
+import database from '../supabase';
+import { useUserStore } from '../stores/user';
+import { useRouter } from 'vue-router';
 const loader = ref(0);
 const modalVisible = ref(false);
-
-
+const l2 = ref(false);
+const user = useUserStore();
+const router = useRouter();
 const add = async()=>{
     loader.value++
  
 }
 
+const id = ref();
+const task = ref({});
+
+const getId=()=>{
+  
+  const curl = router.currentRoute.path;
+
+  const currentRoutePath = ref(null);
+
+  const setCurrentRoutePath = () => {
+    const resolved =  router.resolve({
+      name: router.currentRoute.name,
+      params: router.currentRoute.params,
+    });
+
+    currentRoutePath.value = resolved.href;
+  };
+
+ setCurrentRoutePath();
+  console.log("current Route path: ", currentRoutePath.value)
+
+  console.log("curl: "+ curl);
+
+  const matches = currentRoutePath.value.match(/\d+/g)
+  if(matches) {
+    id.value = parseInt(matches[0])
+   // textValue.value = stringValue.value.replace(matches[0], '')
+  } else {
+    id.value = 0
+   // textValue.value = stringValue.value
+  }
+  
+  console.log("id: "+ id.value);
+}
+  const getTask = async()=>{
+    getId();
+    try {
+    const {data} =  await database
+    .from('tasks')
+    .select('*')
+    .eq('id',id.value)
+  task.value = data[0]
+  console.log("task: ",task.value.reward)
+    }catch(err){
+      console.log(err)
+    }
+  }
+
+async function credit() {
+  l2.value = true
+  await getTask();
+  //get curret user infos
+  try {
+    const {data} =  await database
+    .from('users')
+    .select('*')
+    .eq('name',user.name)
+
+   // update the user's balance
+    try {
+   await database
+  .from('users')
+  .update({ balance: parseFloat(parseFloat(data[0].balance) + parseFloat(task.value.reward)).toFixed(2) })
+  .eq('name', user.name)
+  //modalVisible.value = false
+
+   //updtate the tasks' status
+   try {
+   await database
+  .from('tasks')
+  .update({ completed: true })
+  .eq('id', id.value)
+  l2.value = false
+  modalVisible.value = false
+  router.push('/tasks')
+   }
+   catch(err){
+    console.log(err)
+   }
+  } catch (error) {
+    console.log(error);
+  }
+  } catch (error) {
+  console.log(error);
+  }
+}
+
+
 onMounted(() => {
     //loading();
+    getTask();
     let interval = setInterval(() => {
         if (loader.value < 100) {
             loader.value = loader.value + 5;
@@ -19,7 +112,8 @@ onMounted(() => {
           modalVisible.value = true;
         }
       }, 500);
-})
+}
+)
 
 </script>
 
@@ -64,27 +158,21 @@ onMounted(() => {
                  <div class="font-bold">2.223 USDT</div> </div>
             </v-card-text>
               <v-btn
+              :loading="l2"
               class="mx-8 mb-8 mt-3"
                color = "success"
                 variant="elevated"
-                @click="modalVisible = false"
+                @click="credit()"
               >Encaisser</v-btn>
           </v-card>
      
       </v-dialog>
+
 
     </div>
 
 </template>
 
 <style scoped>
-.titre{
-@apply  
-font-bold text-2xl text-center mt-8;
 
-}
-.t2{
-@apply  
-font-bold text-lg text-left ml-4
-}
 </style>
