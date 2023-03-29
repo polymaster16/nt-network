@@ -32,7 +32,7 @@
     </v-btn>
   </div>
 
-    <div v-if="name==='user.name'?true:false">
+    <div v-if="name === null?true:false">
     <div class="head1 mb-4 mt-9">
     Vous n'avez pas encore de compte visiblement...
     </div>
