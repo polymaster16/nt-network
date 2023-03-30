@@ -2,16 +2,25 @@
 import {ref, onMounted} from 'vue';
 import { useRouter } from 'vue-router';
 import database from '../supabase';
+import { useUserStore } from '../stores/user';
+import { useRobotsStore } from '../stores/robots';
 
 const tasks = ref([])
 const loading = ref(false)
 const router = useRouter()
+const user = useUserStore()
+
+const robotsStore = useRobotsStore();
+const robots = robotsStore.robots;
+
 async function getTasks(){
   loading.value = true;
   try {
   const { data} = await database
   .from('tasks')
   .select('*')
+  .eq('user', `${user.name}`)
+
   tasks.value = data
   //data.value.target = tasks.value
   console.log(data)
@@ -21,65 +30,144 @@ async function getTasks(){
   }
 
 }
+const mv = ref(false)
 
 const open =async(task)=>{
-  if (task.type === 'staking'){
+  if(task.completed){
+    mv.value = true
+    return O;
+  } else {
+    if (task.type === 'staking'){
     router.push(`trading/${task.id}`)
   } else 
   if (task.type === 'mining'){
     router.push(`mining/${task.id}`)
   } else 
-  if (task.type === 'trading'){
+  if (task.type === 'trading1'){
+    router.push(`trading/${task.id}`)
+}else 
+  if (task.type === 'trading2'){
     router.push(`trading/${task.id}`)
 }
+  }
+
+}
+const subscribedRobot = ref("")
+const getSubscriptionRobot = async()=>{
+  subscribedRobot.value = robots.filter(obj => obj.name === user.subscription)[0];
+  console.log("subscribedRobot", subscribedRobot.value)
+}
+
+const loading1 = ref(false)
+
+const setNewTaskDate = async()=>{
+  const today = new Date()
+console.log("today => ",today)
+const tomorrow =  new Date()
+tomorrow.setDate(today.getDate() + 1)
+//returns the tomorrow date
+console.log("tomorrow => ",tomorrow)
+
+  try {
+    await database
+    .from('users')
+    .update({
+      new_task_date:tomorrow,
+    })
+    .eq("name", user.name)
+  } catch (error) {
+    console.log("In updateUserDate(): ", error)
+
+  }
+}
+
+const addTasks=async()=>{
+  const currentDate = new Date()
+  try {
+    const {data} = await database
+  .from('users')
+  .select("new_task_date")
+  .eq("name",user.name)
+   console.log("userNewDate => ",data[0].new_task_date)
+  const standardDate = new Date(data[0].new_task_date)
+  console.log("standardDate => ",standardDate)
+  if(standardDate.getDate() === currentDate.getDate()){
+  try {
+  await database
+  .from('tasks')
+  .insert([
+    tasks1.value[0],
+    tasks1.value[1],
+    tasks1.value[2],
+    tasks1.value[3],
+  ])
+  console.log("tasks added")
+  } catch (error) {
+    console.log("In addTask1(): ", error)
+  }
+  }
+
+  } catch (error) {
+    console.log("In addTask2(): ", error)
+  }
+ 
+
+
+ 
+}
+
+const refresh = async()=>{
+  loading1.value = true
+  await addTasks();
+  await setNewTaskDate();
+  await getTasks();
+  loading1.value = false
 }
 
 onMounted(() => {
+  getSubscriptionRobot()
   getTasks()
 })
 
   const tasks1 = ref([{
-    id:"t1",
     name: "Tache1",
     type:"staking",
     typeColor: "blue",
-    robot:"Astro-boy",
+    robot: subscribedRobot.name,
     robotIcon: "https://api.dicebear.com/5.x/bottts/svg?seed=Princess",
     completed:false,
-
+    reward: parseFloat(subscribedRobot.t1),
+    user: `${user.name}`,
   },
   {
-    id:"t2",
     name: "Tache2",
     type:"trading1",
     typeColor: "pink",
-    robot:"Astro-boy",
+    robot: subscribedRobot.name,
     robotIcon: "https://api.dicebear.com/5.x/bottts/svg?seed=Scooter",
     completed:false,
-
-
+    reward: parseFloat(subscribedRobot.t2),
+    user:  `${user.name}`,
   },
   {
-    id:"t3",
     name: "Tache3",
     type:"trading2",
     typeColor: "green",
-    robot:"Astro-boy",
+    robot: subscribedRobot.name,
     robotIcon: "https://api.dicebear.com/5.x/bottts/svg?seed=rgr",
     completed:false,
-
-
+    reward: parseFloat(subscribedRobot.t3),
+    user:  `${user.name}`,
   },
   {
-    id:"t4",
     name: "Tache4",
     type:"mining",
     typeColor: "amber",
-    robot:"Astro-boy",
+    robot: subscribedRobot.name,
     robotIcon: "https://api.dicebear.com/5.x/bottts/svg?seed=Pepper",
     completed:false,
-
-
+    reward: parseFloat(subscribedRobot.t4),
+    user: `${user.name}`,
   },
   
   
@@ -135,6 +223,19 @@ onMounted(() => {
 </div>
 
     </div>
+    <v-btn :loading="loading1"
+    @click="refresh()"
+    size="large" >
+     <strong>Raffraichir</strong> 
+    </v-btn>
+<v-dialog v-model="mv">
+   <v-alert
+  color="info"
+  title="OOUPS !!!!"
+  text="Cette tache est complète."
+></v-alert>
+</v-dialog>
+   
 </template>
 
 <style scoped>

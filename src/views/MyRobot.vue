@@ -100,6 +100,18 @@ async function debit(){
     user: user.name,
     created_at: new Date()})
 
+try {
+  await database
+  .from('users')
+  .update({
+     subscription: robot.value.name,
+     new_task_date: new Date(),
+     })
+  .eq('name', user.name)
+} catch (error) {
+  console.log(error)
+}
+
   l2.value = false
    embaucherVisisble.value = false
    router.push('/tasks')
